@@ -32,5 +32,4 @@ public class FlightService {
         flightRepository.save(flight);
     }
 
-    // Other methods as needed
 }

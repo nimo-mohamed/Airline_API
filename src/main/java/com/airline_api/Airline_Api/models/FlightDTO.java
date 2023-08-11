@@ -1,54 +1,27 @@
 package com.airline_api.Airline_Api.models;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-@Entity
-@Table(name = "flights")
-public class Flight {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+public class FlightDTO {
     private Long id;
-
-    @Column
     private String destination;
-
-    @Column
     private int capacity;
-
-    @Column
     private LocalDate departureDate;
-
-    @Column
     private LocalTime departureTime;
 
-    @JsonIgnoreProperties({"flights"})
-    @ManyToMany(mappedBy = "flights")
-    private List<Flight> flights;
+    // Constructors, getters, setters
 
-    public Flight(Long id, String destination, int capacity, LocalDate departureDate, LocalTime departureTime, List<Flight> flights) {
+    public FlightDTO(Long id, String destination, int capacity, LocalDate departureDate, LocalTime departureTime) {
         this.id = id;
         this.destination = destination;
         this.capacity = capacity;
         this.departureDate = departureDate;
         this.departureTime = departureTime;
-        this.flights = flights;
     }
 
-    public Flight(){
+    public FlightDTO(){
 
     }
-    public void addFlight(Flight flight){this.flights.add(flight);}
-
-    // Getters and setters
 
     public Long getId() {
         return id;
@@ -89,12 +62,5 @@ public class Flight {
     public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
-
-    public List<Flight> getFlights() {
-        return flights;
-    }
-
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
-    }
 }
+
